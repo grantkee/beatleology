@@ -29,7 +29,8 @@ class App extends Component {
     super(props);
 
     this.state = {
-      counter: 0
+      counter: 0,
+      total: 0
     }
   }
 

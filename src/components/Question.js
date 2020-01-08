@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 //I only need a functional component here because this will display stateless data
 
+//the component displays the content that is passes to it through props.
 function Question ( props ) {
     return (
         <h3 className="question-title">{props.content}</h3>
