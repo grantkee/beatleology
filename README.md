@@ -1,6 +1,6 @@
 # Beatleology
 
-###### Which Beatle are you?
+### Which Beatle are you?
 
 Beatleology is a book written by Adam Jaquette and Roger Jaquette:
 
