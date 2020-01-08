@@ -27,7 +27,7 @@ function Quiz ( props ) {
               total={props.questionTotal}
             />
             <Question content={props.question} />
-            <ul className="answerOptions">
+            <ul className="answer-options">
               {props.answerOptions.map(renderAnswerOptions)}
             </ul>
         </div>
