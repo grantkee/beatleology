@@ -30,8 +30,13 @@ class App extends Component {
 
     this.state = {
       counter: 0,
-      total: 0
-    }
+      questionId: 1,
+      question: '',
+      answerOptions: [],
+      answer: '',
+      answersCount: {},
+      result: ''
+    };
   }
 
   render() {
