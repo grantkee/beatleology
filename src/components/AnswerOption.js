@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-//this component will
+//this component will be mapped over to generate <li> elements with answer options. I'm using radio buttons for the user to click. The checked property will toggle true/false if the answer option type is equivalent to the answer that the user selects.
 
 function AnswerOption ( props ) {
     return (
@@ -22,6 +22,8 @@ function AnswerOption ( props ) {
         </li>
     );
 }
+
+//checking that props are being passed correctly
 
 AnswerOption.propTypes = {
     answerType: PropTypes.string.isRequired,
