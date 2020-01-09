@@ -5,6 +5,7 @@ import logo from './logo.svg';
 import './App.css';
 import Question from './components/Question';
 import quizQuestions from './redux/state';
+import Quiz from './components/Quiz'
 
 class App extends Component {
   constructor ( props ) {
@@ -46,30 +47,66 @@ class App extends Component {
       currentIndex -= 1;
 
       //then swap with current element
-      temporaryValue = array[currentIndex];
+      tempValue = array[currentIndex];
       array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;      
+      array[randomIndex] = tempValue;      
     }
     //return the newly ordered/mutated array
     return array;
   }
 
   setUserAnswer( answer ) {
+    //setting state with a function rather than an object to capture the previous state.
     this.setState( state => ({
       answersCount: {
         ...state.answersCount,
+        //updating the answerCount
         [answer]: (state.answersCount[answer] || 0) + 1
       },
       answer: answer
     }))
   }
 
+  setNextQuestion() {
+    //increment counter and questionId
+    let counter = this.state.counter + 1;
+    let questionId = this.state.questionId + 1;
+    
+    //updating state with increased values, and updating quizQuestions with the incremented counter value
+    this.setState({
+      counter: counter,
+      questionId: questionId,
+      question: quizQuestions[counter].question,
+      answerOptions: quizQuestions[counter].answers,
+      answer: ''
+    });
+  }
+
   handleAnswerSelected( event ) {
-    this.setUserAnswer(event.currentTarget.value);
+    //the user's answer will be the value of the button that they click. React captures this information with the event object. the relevant information for this instance is stored uncer currentTarget as the value. I'm passing this information on to the setUserAnswer function.
+    let answer = event.currentTarget.value
+    this.setUserAnswer( answer );
     if( this.state.questionId < quizQuestions.length ) {
       setTimeout( () => this.setNextQuestion(), 333 )
     } else {
-      //do nothing
+      setTimeout( () => this.setResults( this.getResults() ), 333)
+    }
+  }
+
+  getResults() {
+    let answersCount = this.state.answersCount;
+    let answersCountKeys = Object.keys(answersCount);
+    let answersCountValues = answersCountKeys.map( key => answersCount[key] );
+    let maxAnswerCount = Math.max.apply( null, answersCountValues );
+
+    return answersCountKeys.filter( key => answersCount[key] === maxAnswerCount)
+  }
+
+  setResults( result ) {
+    if ( result.length === 1 ) {
+      this.setState( {result: result[0]} );
+    } else {
+      this.setState( {result: 'Undetermined'} );
     }
   }
 
@@ -86,6 +123,7 @@ class App extends Component {
           questionId={this.state.questionId}
           questionTotal={quizQuestions.length}
           onAnswerSelected={this.handleAnswerSelected}
+          question={this.state.question}
         />
       </div>
     )

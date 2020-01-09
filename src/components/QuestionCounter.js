@@ -12,7 +12,7 @@ function QuestionCounter ( props ) {
 
 //both values should be numbers and are required
 
-QuestionCounter.PropTypes = {
+QuestionCounter.propTypes = {
     counter: PropTypes.number.isRequired,
     total: PropTypes.number.isRequired
 };
