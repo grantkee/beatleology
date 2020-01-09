@@ -1,3 +1,5 @@
+//bonus challenge: do it in TypeScript - npm install. Google 'create react app typescript' --save typescript @types/node @types/react @types/react-dom @types/jest
+
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
@@ -48,9 +50,8 @@ class App extends Component {
       array[currentIndex] = array[randomIndex];
       array[randomIndex] = temporaryValue;      
     }
-
+    //return the newly ordered/mutated array
     return array;
-
   }
 
   handleAnswerSelected( e ) {
