@@ -3,9 +3,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Question from './components/Question';
 import quizQuestions from './redux/state';
-import Quiz from './components/Quiz'
+import Quiz from './components/Quiz';
+import Results from './components/Results';
 
 class App extends Component {
   constructor ( props ) {
@@ -89,6 +89,7 @@ class App extends Component {
     if( this.state.questionId < quizQuestions.length ) {
       setTimeout( () => this.setNextQuestion(), 333 )
     } else {
+      //whatever is returned from getResults() will be what's passed to setResults()
       setTimeout( () => this.setResults( this.getResults() ), 333)
     }
   }
@@ -99,15 +100,40 @@ class App extends Component {
     let answersCountValues = answersCountKeys.map( key => answersCount[key] );
     let maxAnswerCount = Math.max.apply( null, answersCountValues );
 
-    return answersCountKeys.filter( key => answersCount[key] === maxAnswerCount)
+    //filtering the key with the highest answerCount value. each answer the user clicks counts as one
+    
+    let result = answersCountKeys.filter( key => answersCount[key] === maxAnswerCount);
+
+    return result
   }
 
   setResults( result ) {
+    //the simple logic for now only sees which Beatle the user matched with the most and passes that 
     if ( result.length === 1 ) {
       this.setState( {result: result[0]} );
     } else {
+      //if there is a tie, then the result (for now) will be 'undetermined'
       this.setState( {result: 'Undetermined'} );
     }
+  }
+
+  renderQuiz(){
+    return (
+      <Quiz 
+      answer={this.state.answer}
+      answerOptions={this.state.answerOptions}
+      questionId={this.state.questionId}
+      questionTotal={quizQuestions.length}
+      onAnswerSelected={this.handleAnswerSelected}
+      question={this.state.question}
+    />
+    );
+  }
+
+  renderResults() {
+    return (
+      <Results quizResults={this.state.result} />
+    )
   }
 
   render() {
@@ -117,14 +143,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1>Beatleology Quiz</h1>
         </div>
-        <Quiz 
-          answer={this.state.answer}
-          answerOptions={this.state.answerOptions}
-          questionId={this.state.questionId}
-          questionTotal={quizQuestions.length}
-          onAnswerSelected={this.handleAnswerSelected}
-          question={this.state.question}
-        />
+        {this.state.result ? this.renderResults() : this.renderQuiz()}
       </div>
     )
   }
