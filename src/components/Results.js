@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 
 function Results( props ) {
     return (
-        <div className='result'>
+        <h3 className='result'>
             Your inner Beatle is: {props.quizResults}
-        </div>
+        </h3>
     );
 }
 
