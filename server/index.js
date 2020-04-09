@@ -16,6 +16,7 @@ app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 
 app.get('/', (req, res) => {
+  console.log('gottem :D')
   res.send('connected - please visit /auth/login or /auth/signup to get started')
 });
 
