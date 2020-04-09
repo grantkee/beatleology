@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import quizQuestions from './redux/state';
+import quizQuestions from './redux/state-old';
 import Quiz from './components/Quiz';
 import Results from './components/Results';
 

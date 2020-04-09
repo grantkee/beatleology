@@ -2,7 +2,6 @@
   "name": "beatleology",
   "version": "0.1.0",
   "private": true,
-  "main": "server/index.js",
   "author": "grantkee",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -12,7 +11,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.3.0",
+    "react-scripts": "3.4.0",
     "redux": "^4.0.5",
     "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
