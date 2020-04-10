@@ -46,9 +46,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn() {
+export default function Login(props) {
   const classes = useStyles();
-
+  const setCookie = () => {
+    document.cookie = 'loggedIn=turtles; max-age=60*1000';
+    document.cookie = 'amswer=42; max-age=10';
+    props.history.push('/')
+  }
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -59,7 +63,7 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={() => setCookie()}>
           <TextField
             variant="outlined"
             margin="normal"
