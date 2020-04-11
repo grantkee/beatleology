@@ -126,6 +126,7 @@ class Main extends Component {
       questionTotal={quizQuestions.length}
       onAnswerSelected={this.handleAnswerSelected}
       question={this.state.question}
+      counter={this.state.counter}
     />
     );
   }

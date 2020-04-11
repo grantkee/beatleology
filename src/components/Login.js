@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -48,8 +48,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Login(props) {
   const classes = useStyles();
+  const [userEmail, setUserEmail] = useState('');
+  const [userSecret, setUserSecret] = useState('');
+  const [loading, setLoading] = useState(false);
+
   const setCookie = () => {
-    document.cookie = 'loggedIn=turtles; max-age=60*1000';
+    document.cookie = 'loggedIn=false; max-age=60*1000';
     document.cookie = 'amswer=42; max-age=10';
     props.history.push('/')
   }
@@ -72,19 +76,22 @@ export default function Login(props) {
             id="email"
             label="Email Address"
             name="email"
-            autoComplete="email"
+            type="email"
             autoFocus
+            value={ userEmail }
+            onChange={e => setUserEmail(e.target.value)}
           />
           <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            name="password"
-            label="Password"
-            type="password"
             id="password"
-            autoComplete="current-password"
+            label="Password"
+            name="password"
+            type="password"
+            value={ userSecret }
+            onChange={e => setUserSecret(e.target.value)}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
@@ -97,7 +104,7 @@ export default function Login(props) {
             color="primary"
             className={classes.submit}
           >
-            Sign In
+            {loading ? 'Loading...' : 'Sign in'}
           </Button>
           <Grid container>
             <Grid item xs>

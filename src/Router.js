@@ -19,7 +19,7 @@ const ProtectedRoute = ({component: Component,...rest}) => {
       {...rest}
       render={(props) => checkAuth()
       ? <Component {...props} />
-      : <Redirect to="/login" />}
+      : <Redirect to="/auth/login" />}
       />
   )
 }
@@ -28,7 +28,7 @@ export default function Router() {
   return (
     <Switch>
       <Route path='/signup' component={ SignUp } />
-      <Route path='/login' component={ Login } />
+      <Route path='/auth/login' component={ Login } />
       <ProtectedRoute exact path='/' component={ Main } />
     </Switch>
   )
