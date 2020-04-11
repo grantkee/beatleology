@@ -1,13 +1,13 @@
 //bonus challenge: do it in TypeScript - npm install. Google 'create react app typescript' --save typescript @types/node @types/react @types/react-dom @types/jest
 
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import quizQuestions from './redux/state';
-import Quiz from './components/Quiz';
-import Results from './components/Results';
+import logo from '../logo.svg';
+// import './App.css';
+import quizQuestions from '../redux/questionsArray';
+import Quiz from './Quiz';
+import Results from './Results';
 
-class App extends Component {
+class Main extends Component {
   constructor ( props ) {
     super( props );
 
@@ -126,6 +126,7 @@ class App extends Component {
       questionTotal={quizQuestions.length}
       onAnswerSelected={this.handleAnswerSelected}
       question={this.state.question}
+      counter={this.state.counter}
     />
     );
   }
@@ -149,4 +150,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Main;
