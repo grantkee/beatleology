@@ -1,11 +1,11 @@
 //bonus challenge: do it in TypeScript - npm install. Google 'create react app typescript' --save typescript @types/node @types/react @types/react-dom @types/jest
 
 import React, { Component } from 'react';
-import logo from '../logo.svg';
-// import './App.css';
-import quizQuestions from '../redux/questionsArray';
-import Quiz from './Quiz';
-import Results from './Results';
+import logo from './logo.svg';
+import './App.css';
+import quizQuestions from './questions';
+import Quiz from './components/Quiz';
+import Results from './components/Results';
 
 class App extends Component {
   constructor ( props ) {
