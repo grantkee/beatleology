@@ -100,7 +100,7 @@ const quizQuestions = [
             },            
             {
                 type: "John",
-                content: "If it feels go, do it"
+                content: "If it feels good, do it"
             }
         ]
     },
